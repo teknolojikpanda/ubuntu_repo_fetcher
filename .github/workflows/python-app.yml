@@ -24,13 +24,13 @@ jobs:
       with:
         python-version: "3.12"
     - name: Install dependencies
-      run: |
-        sudo apt install -y python3-apt
-        sudo apt show python3-apt
+      run: |      
         python -m venv --system-site-packages .venv
-        ls -alrt /usr/lib/python3/dist-packages/
-        cd .venv/lib/python3.12 && ln -s /usr/lib/python3/dist-packages/ . && cd -
         source .venv/bin/activate
+
+        sudo apt install --reinstall -y python3-apt
+        sudo apt show python3-apt
+        
         python -m pip install --upgrade pip
         pip install flake8 pytest pytest-mock
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
