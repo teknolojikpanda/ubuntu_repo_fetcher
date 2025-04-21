@@ -30,6 +30,7 @@ jobs:
 
         sudo apt install --reinstall -y python3-apt
         sudo apt show python3-apt
+        cd /usr/lib/python3/dist-packages/ && sudo cp apt_pkg.cpython-312-x86_64-linux-gnu.so apt_pkg.so && cd -
         
         python -m pip install --upgrade pip
         pip install flake8 pytest pytest-mock
