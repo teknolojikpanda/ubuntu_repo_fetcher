@@ -28,7 +28,7 @@ jobs:
         sudo apt install -y python3-apt
         sudo apt show python3-apt
         python -m venv --system-site-packages .venv
-        cd .venv/lib/python3.10 && ln -s /usr/lib/python3/dist-packages/ . && cd -
+        cd .venv/lib/python3.12 && ln -s /usr/lib/python3/dist-packages/ . && cd -
         source .venv/bin/activate
         python -m pip install --upgrade pip
         pip install flake8 pytest pytest-mock
