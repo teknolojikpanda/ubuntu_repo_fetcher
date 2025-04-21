@@ -2,9 +2,6 @@ from dataclasses import dataclass, field
 from pathlib import Path
 import logging
 
-# Import parsing function from debian_version module
-from .debian_version import parse_debian_version
-
 logger = logging.getLogger(__name__)
 
 @dataclass
@@ -16,25 +13,13 @@ class PackageInfo:
     filename: str
     size: int
     sha256: str = ""
-    debian_version_tuple: tuple = field(init=False) # Parsed (epoch, upstream, revision)
     component: str = ""
     pocket: str = "" # e.g. "", "-updates", "-security"
     type: str = "" # 'binary' or 'source'
 
-    def __post_init__(self):
-        # Parse using the dedicated function
-        try:
-            self.debian_version_tuple = parse_debian_version(self.version_str)
-        except Exception as e:
-            logger.error(f"Failed to parse version string '{self.version_str}' for {self.package}: {e}")
-            # Assign a tuple that sorts very low as a fallback
-            self.debian_version_tuple = (-1, "", None)
-
     def __hash__(self):
         # Hash based on identifying info; filename includes version details.
         return hash((self.package, self.version_str, self.architecture, self.filename))
-
-    # Note: Comparison logic uses compare_debian_versions from the debian_version module externally
 
 @dataclass
 class RepoFile:

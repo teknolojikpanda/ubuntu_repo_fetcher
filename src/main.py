@@ -172,7 +172,7 @@ def run_mirror_process(args):
                                     all_packages[key] = pkg_info
                                 else:
                                     current_best = all_packages[key]
-                                    comp = compare_debian_versions(pkg_info.debian_version_tuple, current_best.debian_version_tuple)
+                                    comp = compare_debian_versions(pkg_info.version_str, current_best.version_str)
                                     if comp > 0: # New one is newer
                                         all_packages[key] = pkg_info
                                     elif comp == 0: # Versions equal, prefer security > updates > release
