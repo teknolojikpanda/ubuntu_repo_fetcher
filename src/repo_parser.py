@@ -1,8 +1,6 @@
 import re
-import gzip
 import logging
 from email.parser import BytesHeaderParser
-from pathlib import Path
 
 from .models import PackageInfo
 
