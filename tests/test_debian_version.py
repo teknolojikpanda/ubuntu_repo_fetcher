@@ -1,13 +1,6 @@
 import pytest
+from src.debian_version import compare_debian_versions
 # Conditional import to allow tests to be collected even if apt_pkg is missing
-try:
-    from src.debian_version import compare_debian_versions
-    apt_pkg_available = True
-except ImportError:
-    apt_pkg_available = False
-
-# Skip all tests in this module if apt_pkg is not available
-pytestmark = pytest.mark.skipif(not apt_pkg_available, reason="python3-apt (apt_pkg) not installed")
 
 @pytest.mark.parametrize("v1, v2, expected", [
     ("1.0", "1.0", 0),

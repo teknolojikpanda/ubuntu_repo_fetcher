@@ -1,5 +1,5 @@
 import logging
-from debian.debian_support import Version, VersionError
+from debian.debian_support import Version
 
 logger = logging.getLogger(__name__)
 
@@ -11,7 +11,7 @@ def compare_debian_versions(version_str1, version_str2):
     try:
         v1 = Version(version_str1)
         v2 = Version(version_str2)
-    except VersionError as e:
+    except Exception as e:
         # Re-raise as ValueError for clearer API or handle as needed
         logger.exception("Invalid Debian version string encountered")
         return 0
