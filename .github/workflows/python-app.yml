@@ -45,4 +45,8 @@ jobs:
       run: |
         python --version
         pyinstaller --onefile --clean --name ubuntu_repo_fetcher run_mirror.py
-  
+    - name: Upload application artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ubuntu_repo_fetcher
+        path: dist/
